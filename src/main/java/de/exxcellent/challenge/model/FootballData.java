@@ -1,9 +1,9 @@
 package de.exxcellent.challenge.model;
 
 public class FootballData {
-    String teamName;
-    int goals;
-    int allowedGoals;
+    private String teamName;
+    private int goals;
+    private int allowedGoals;
 
     public FootballData(String teamName, int goals, int allowedGoals) {
         this.teamName = teamName;

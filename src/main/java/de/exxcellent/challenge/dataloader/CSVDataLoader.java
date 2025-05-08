@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  Class for loading data of a CSV file into a list of a specific type
+ * Class for loading data of a CSV file into a list of a specific type
  */
-public class CSVDataLoader<T> implements DataLoader<T>{
+public class CSVDataLoader<T> implements DataLoader<T> {
 
-    CSVParser<T> parser;
+    private CSVParser<T> parser;
 
     public CSVDataLoader(CSVParser<T> parser) {
         this.parser = parser;
