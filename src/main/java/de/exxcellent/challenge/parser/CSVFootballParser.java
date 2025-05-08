@@ -6,7 +6,9 @@ public class CSVFootballParser implements CSVParser<FootballData> {
 
     @Override
     public FootballData parse(String[] dataSet) {
-        return null;
+        return  new FootballData(dataSet[0],
+                Integer.parseInt(dataSet[5]),
+                Integer.parseInt(dataSet[6]));
     }
 
 }
