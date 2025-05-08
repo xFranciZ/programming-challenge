@@ -4,6 +4,9 @@ import de.exxcellent.challenge.model.FootballData;
 
 import java.util.List;
 
+/**
+ * Class for analyzing FootballData
+ */
 public class FootballDataAnalyzer {
 
     public FootballData getDataWithSmallestGoalDifference(List<FootballData> footballDataList) {
