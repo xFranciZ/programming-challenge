@@ -11,11 +11,11 @@ public class CSVFootballParserTest {
     @Test
     public void testCSVFootballParser() {
         CSVFootballParser csvFootballParser = new CSVFootballParser();
-        String[] dataSet = {"Arsenal", "10", "5"}; //Team,Goals,allowedGoals
+        String[] dataSet = {"Arsenal","38","26","9","3","79","36","87"}; //Team,Games,Wins,Losses,Draws,Goals,Goals Allowed,Points
         FootballData data = csvFootballParser.parse(dataSet);
-        
+
         assertEquals("Arsenal", data.getTeamName());
-        assertEquals(10,data.getGoals());
-        assertEquals(5, data.getAllowedGoals());
+        assertEquals(79,data.getGoals());
+        assertEquals(36, data.getAllowedGoals());
     }
 }
