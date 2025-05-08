@@ -1,8 +1,11 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.analyzer.FootballAnalyzer;
 import de.exxcellent.challenge.analyzer.WeatherDataAnalyzer;
 import de.exxcellent.challenge.dataloader.CSVDataLoader;
+import de.exxcellent.challenge.model.FootballData;
 import de.exxcellent.challenge.model.WeatherData;
+import de.exxcellent.challenge.parser.CSVFootballParser;
 import de.exxcellent.challenge.parser.CSVWeatherParser;
 
 import java.util.List;
@@ -21,9 +24,7 @@ public final class App {
      */
     public static void main(String... args) {
         loadAndAnalyzeWeatherData();
-
-        String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
-        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+        loadAndAnalyzeFootballData();
     }
 
     private static void loadAndAnalyzeWeatherData() {
@@ -33,7 +34,18 @@ public final class App {
        WeatherDataAnalyzer weatherDataAnalyzer = new WeatherDataAnalyzer();
        WeatherData dataWithSmallestSpread = weatherDataAnalyzer.getDataWithSmallestTemperatureSpread(weatherDataList);
 
-        String dayWithSmallestTempSpread = dataWithSmallestSpread.getDay() + "";     // Your day analysis function call …
+        String dayWithSmallestTempSpread = dataWithSmallestSpread.getDay() + "";
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
+    }
+
+    private static void loadAndAnalyzeFootballData() {
+        CSVDataLoader<FootballData> csvDataLoader = new CSVDataLoader<>(new CSVFootballParser());
+        List<FootballData> footballDataList = csvDataLoader.load("de/exxcellent/challenge/football.csv");
+
+        FootballAnalyzer footballAnalyzer = new FootballAnalyzer();
+        FootballData dataWithSmallestGoalDifference = footballAnalyzer.getDataWithSmallestGoalDifference(footballDataList);
+
+        String teamWithSmallestGoalSpread = dataWithSmallestGoalDifference.getTeamName();
+        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
     }
 }
