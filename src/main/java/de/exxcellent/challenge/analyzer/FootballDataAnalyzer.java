@@ -4,7 +4,7 @@ import de.exxcellent.challenge.model.FootballData;
 
 import java.util.List;
 
-public class FootballAnalyzer {
+public class FootballDataAnalyzer {
 
     public FootballData getDataWithSmallestGoalDifference(List<FootballData> footballDataList) {
         FootballData result = footballDataList.get(0);

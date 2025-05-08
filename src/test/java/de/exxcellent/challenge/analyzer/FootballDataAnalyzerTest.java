@@ -1,7 +1,6 @@
 package de.exxcellent.challenge.analyzer;
 
 import de.exxcellent.challenge.model.FootballData;
-import de.exxcellent.challenge.model.WeatherData;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class FootballDataAnalyzerTest {
         footballDataList.add(new FootballData("Manchester", 12, 5));
         footballDataList.add(new FootballData("Chelsea", 10, 3));
 
-        FootballAnalyzer footballAnalyzer = new FootballAnalyzer();
+        FootballDataAnalyzer footballAnalyzer = new FootballDataAnalyzer();
         FootballData result = footballAnalyzer.getDataWithSmallestGoalDifference(footballDataList);
 
         assertEquals("Liverpool", result.getTeamName());

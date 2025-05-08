@@ -1,6 +1,6 @@
 package de.exxcellent.challenge;
 
-import de.exxcellent.challenge.analyzer.FootballAnalyzer;
+import de.exxcellent.challenge.analyzer.FootballDataAnalyzer;
 import de.exxcellent.challenge.analyzer.WeatherDataAnalyzer;
 import de.exxcellent.challenge.dataloader.CSVDataLoader;
 import de.exxcellent.challenge.model.FootballData;
@@ -52,7 +52,7 @@ public final class App {
         CSVDataLoader<FootballData> csvDataLoader = new CSVDataLoader<>(new CSVFootballParser());
         List<FootballData> footballDataList = csvDataLoader.load("de/exxcellent/challenge/" + fileName);
 
-        FootballAnalyzer footballAnalyzer = new FootballAnalyzer();
+        FootballDataAnalyzer footballAnalyzer = new FootballDataAnalyzer();
         FootballData dataWithSmallestGoalDifference = footballAnalyzer.getDataWithSmallestGoalDifference(footballDataList);
 
         String teamWithSmallestGoalSpread = dataWithSmallestGoalDifference.getTeamName();
