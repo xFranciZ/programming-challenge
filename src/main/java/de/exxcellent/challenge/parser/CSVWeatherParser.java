@@ -6,6 +6,8 @@ public class CSVWeatherParser implements CSVParser<WeatherData>{
 
     @Override
     public WeatherData parse(String[] dataSet) {
-        return null;
+        return  new WeatherData(Integer.parseInt(dataSet[0]),
+                Integer.parseInt(dataSet[2]),
+                Integer.parseInt(dataSet[1]));
     }
 }
