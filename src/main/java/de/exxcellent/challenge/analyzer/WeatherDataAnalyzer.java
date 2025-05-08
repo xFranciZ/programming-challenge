@@ -4,6 +4,9 @@ import de.exxcellent.challenge.model.WeatherData;
 
 import java.util.List;
 
+/**
+ * Class for analyzing WeatherData
+ */
 public class WeatherDataAnalyzer {
 
     public WeatherData getDataWithSmallestTemperatureSpread(List<WeatherData> weatherDataList) {
