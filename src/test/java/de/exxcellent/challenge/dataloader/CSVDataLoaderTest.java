@@ -1,6 +1,7 @@
 package de.exxcellent.challenge.dataloader;
 
 import de.exxcellent.challenge.model.WeatherData;
+import de.exxcellent.challenge.parser.CSVWeatherParser;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class CSVDataLoaderTest {
         expectedDataList.add(new WeatherData(3, 2,8));
 
 
-        CSVDataLoader<WeatherData> csvWeatherDataLoader = new CSVDataLoader<>();
+        CSVDataLoader<WeatherData> csvWeatherDataLoader = new CSVDataLoader<>(new CSVWeatherParser());
         List<WeatherData> weatherDataList = csvWeatherDataLoader.load("/weather_test.csv");
 
         assertEquals(weatherDataList.size(), expectedDataList.size());

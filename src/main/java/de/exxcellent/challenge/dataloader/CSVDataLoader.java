@@ -11,6 +11,10 @@ public class CSVDataLoader<T> implements DataLoader<T>{
 
     CSVParser<T> parser;
 
+    public CSVDataLoader(CSVParser<T> parser) {
+        this.parser = parser;
+    }
+
     @Override
     public List<T> load(String filePath) {
         return List.of();
