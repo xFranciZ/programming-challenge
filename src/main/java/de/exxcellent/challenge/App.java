@@ -23,13 +23,23 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
-        loadAndAnalyzeWeatherData();
-        loadAndAnalyzeFootballData();
+
+        switch (args[0]) {
+            case "--weather":
+                loadAndAnalyzeWeatherData(args[1]);
+                break;
+            case "--football":
+                loadAndAnalyzeFootballData(args[1]);
+                break;
+            default:
+                System.err.println("Please use --weather or --football to load and analyze data!");
+                System.exit(1);
+        }
     }
 
-    private static void loadAndAnalyzeWeatherData() {
+    private static void loadAndAnalyzeWeatherData(String fileName) {
        CSVDataLoader<WeatherData> csvDataLoader = new CSVDataLoader<>(new CSVWeatherParser());
-       List<WeatherData> weatherDataList = csvDataLoader.load("de/exxcellent/challenge/weather.csv");
+       List<WeatherData> weatherDataList = csvDataLoader.load("de/exxcellent/challenge/" + fileName);
 
        WeatherDataAnalyzer weatherDataAnalyzer = new WeatherDataAnalyzer();
        WeatherData dataWithSmallestSpread = weatherDataAnalyzer.getDataWithSmallestTemperatureSpread(weatherDataList);
@@ -38,9 +48,9 @@ public final class App {
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
     }
 
-    private static void loadAndAnalyzeFootballData() {
+    private static void loadAndAnalyzeFootballData(String fileName) {
         CSVDataLoader<FootballData> csvDataLoader = new CSVDataLoader<>(new CSVFootballParser());
-        List<FootballData> footballDataList = csvDataLoader.load("de/exxcellent/challenge/football.csv");
+        List<FootballData> footballDataList = csvDataLoader.load("de/exxcellent/challenge/" + fileName);
 
         FootballAnalyzer footballAnalyzer = new FootballAnalyzer();
         FootballData dataWithSmallestGoalDifference = footballAnalyzer.getDataWithSmallestGoalDifference(footballDataList);
