@@ -1,7 +1,14 @@
 package de.exxcellent.challenge.dataloader;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+import com.sun.tools.javac.Main;
 import de.exxcellent.challenge.parser.CSVParser;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +24,31 @@ public class CSVDataLoader<T> implements DataLoader<T>{
 
     @Override
     public List<T> load(String filePath) {
-        return List.of();
+
+        List<T> data = new ArrayList<>();
+
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
+
+        if (inputStream == null) {
+            System.err.println("File " + filePath + "not found!");
+            return null;
+        }
+
+        try {
+            CSVReader reader = new CSVReader(new InputStreamReader(inputStream));
+            reader.readNext();
+
+            String[] dataSet;
+            while ((dataSet = reader.readNext()) != null) {
+                T dataElement = parser.parse(dataSet);
+                data.add(dataElement);
+            }
+
+        } catch (IOException | CsvValidationException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return data;
     }
 
 }

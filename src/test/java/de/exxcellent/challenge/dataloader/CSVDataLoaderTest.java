@@ -12,13 +12,12 @@ public class CSVDataLoaderTest {
     @Test
     public void testCSVLoaderWithWeatherData() {
         List<WeatherData> expectedDataList = new ArrayList<>();
-        expectedDataList.add(new WeatherData(1, 1,10));
-        expectedDataList.add(new WeatherData(2,5,11));
-        expectedDataList.add(new WeatherData(3, 2,8));
-
+        expectedDataList.add(new WeatherData(1, 59,88));
+        expectedDataList.add(new WeatherData(2,63,79));
+        expectedDataList.add(new WeatherData(3, 55,77));
 
         CSVDataLoader<WeatherData> csvWeatherDataLoader = new CSVDataLoader<>(new CSVWeatherParser());
-        List<WeatherData> weatherDataList = csvWeatherDataLoader.load("/weather_test.csv");
+        List<WeatherData> weatherDataList = csvWeatherDataLoader.load("de/exxcellent/challenge/weather_test.csv");
 
         assertEquals(weatherDataList.size(), expectedDataList.size());
 
