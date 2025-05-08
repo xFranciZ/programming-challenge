@@ -1,5 +1,12 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.analyzer.WeatherDataAnalyzer;
+import de.exxcellent.challenge.dataloader.CSVDataLoader;
+import de.exxcellent.challenge.model.WeatherData;
+import de.exxcellent.challenge.parser.CSVWeatherParser;
+
+import java.util.List;
+
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
  * design. Read: create your own classes and packages as appropriate.
@@ -13,13 +20,20 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
-
-        // Your preparation code …
-
-        String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
-        System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
+        loadAndAnalyzeWeatherData();
 
         String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
         System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+    }
+
+    private static void loadAndAnalyzeWeatherData() {
+       CSVDataLoader<WeatherData> csvDataLoader = new CSVDataLoader<>(new CSVWeatherParser());
+       List<WeatherData> weatherDataList = csvDataLoader.load("de/exxcellent/challenge/weather.csv");
+
+       WeatherDataAnalyzer weatherDataAnalyzer = new WeatherDataAnalyzer();
+       WeatherData dataWithSmallestSpread = weatherDataAnalyzer.getDataWithSmallestTemperatureSpread(weatherDataList);
+
+        String dayWithSmallestTempSpread = dataWithSmallestSpread.getDay() + "";     // Your day analysis function call …
+        System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
     }
 }
